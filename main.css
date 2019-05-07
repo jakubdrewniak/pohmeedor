@@ -1,3 +1,9 @@
+:root {
+	--first-half-rotate: 0deg;
+	--second-half-rotate: 0deg;
+
+  }
+
 .pie {
 	position: absolute;
 	width: 100px;
@@ -33,50 +39,50 @@
 	background-color: green;
 }
 
-.pie[data-start="30"] {
-	-moz-transform: rotate(30deg);
+.pie[data-start="0"] {
+	/* -moz-transform: rotate(30deg); */
 	/* Firefox */
-	-ms-transform: rotate(30deg);
+	/* -ms-transform: rotate(30deg); */
 	/* IE */
-	-webkit-transform: rotate(30deg);
+	/* -webkit-transform: rotate(30deg); */
 	/* Safari and Chrome */
-	-o-transform: rotate(30deg);
+	/* -o-transform: rotate(30deg); */
 	/* Opera */
-	transform: rotate(30deg);
+	transform: rotate(0deg);
 }
 
 .pie[data-start="180"] {
-	-moz-transform: rotate(180deg);
+	/* -moz-transform: rotate(180deg); */
 	/* Firefox */
-	-ms-transform: rotate(180deg);
+	/* -ms-transform: rotate(180deg); */
 	/* IE */
-	-webkit-transform: rotate(180deg);
+	/* -webkit-transform: rotate(180deg); */
 	/* Safari and Chrome */
-	-o-transform: rotate(180deg);
+	/* -o-transform: rotate(180deg); */
 	/* Opera */
 	transform: rotate(180deg);
 }
 
-.pie[data-value="first-half"]:BEFORE {
-	-moz-transform: rotate(31deg);
+.pie#first-half:BEFORE {
+	/* -moz-transform: rotate(31deg); */
 	/* Firefox */
-	-ms-transform: rotate(31deg);
+	/* -ms-transform: rotate(31deg); */
 	/* IE */
-	-webkit-transform: rotate(31deg);
+	/* -webkit-transform: rotate(31deg); */
 	/* Safari and Chrome */
-	-o-transform: rotate(31deg);
+	/* -o-transform: rotate(31deg); */
 	/* Opera */
-	transform: rotate(31deg);
+	transform: rotate(var(--first-half-rotate));
 }
 
-.pie[data-value="second-half"]:BEFORE {
-	-moz-transform: rotate(31deg);
+.pie#second-half:BEFORE {
+	/* -moz-transform: rotate(31deg); */
 	/* Firefox */
-	-ms-transform: rotate(31deg);
+	/* -ms-transform: rotate(31deg); */
 	/* IE */
-	-webkit-transform: rotate(31deg);
+	/* -webkit-transform: rotate(31deg); */
 	/* Safari and Chrome */
-	-o-transform: rotate(31deg);
+	/* -o-transform: rotate(31deg); */
 	/* Opera */
-	transform: rotate(31deg);
+	transform: rotate(var(--second-half-rotate));
 }
