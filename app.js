@@ -5,11 +5,12 @@ function Pohmeedor() {
 }
 
 Pohmeedor.prototype.init = function () {
-	let startButton = document.querySelector('.start-button')
-	startButton.addEventListener("click", this.initializePie.bind(this))
+	this.startButton = document.querySelector('.start-button')
+	this.startButton.addEventListener("click", this.initializePie.bind(this))
 }
 
 Pohmeedor.prototype.initializePie = function () {
+
 	let timeInput = document.getElementById("time-min")
 	this.timeInMin = parseInt(timeInput.value)
 	this.timeInSec = this.timeInMin * 60
@@ -18,9 +19,15 @@ Pohmeedor.prototype.initializePie = function () {
 	this.runTimer()
 }
 
+Pohmeedor.prototype.setStartButtonDisplay = function (value) {
+	this.startButton.style.display = value
+}
+
 Pohmeedor.prototype.stop = function () {
 	this.root.style.setProperty('--first-half-rotate', "0deg");
 	this.root.style.setProperty('--second-half-rotate', "0deg");
+
+	this.setStartButtonDisplay("inline-block")
 }
 
 Pohmeedor.prototype.reset = function () {
@@ -42,6 +49,8 @@ Pohmeedor.prototype.pieResizer = function () {
 }
 
 Pohmeedor.prototype.runTimer = function () {
+	this.setStartButtonDisplay("none")
+
 	const self = this
 	let currentFHDegree = 0
 	let currentSHDegree = 0
