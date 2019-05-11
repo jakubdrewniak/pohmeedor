@@ -73,3 +73,7 @@
 .start-button {
 	display: inline-block
 }
+
+.stop-button {
+	top: 60px;
+}

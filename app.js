@@ -18,9 +18,13 @@ Pohmeedor.prototype.initializePie = function () {
 	this.runTimer()
 }
 
-Pohmeedor.prototype.reset = function () {
+Pohmeedor.prototype.stop = function () {
 	this.root.style.setProperty('--first-half-rotate', "0deg");
 	this.root.style.setProperty('--second-half-rotate', "0deg");
+}
+
+Pohmeedor.prototype.reset = function () {
+	this.stop()
 	this.runTimer()
 }
 
@@ -44,7 +48,6 @@ Pohmeedor.prototype.runTimer = function () {
 	const degreeForOneSecond = 360 / this.timeInSec
 	let secondHalfIntervalToken
 	let secondHalfStartPermitted = true
-
 
 	const starterForFirstHalf = setInterval(() => {
 		currentFHDegree += degreeForOneSecond
@@ -70,15 +73,28 @@ Pohmeedor.prototype.runTimer = function () {
 		() => { clearInterval(secondHalfIntervalToken) }, this.timeInSec * 1000
 	)
 
+	function reset() {
+		stopAll()
+		self.reset()
+	}
+
+	function stop() {
+		stopAll()
+		self.stop()
+	}
+
 	function stopAll() {
 		secondHalfStartPermitted = false
 		clearInterval(starterForFirstHalf)
 		clearInterval(secondHalfIntervalToken)
-		self.reset()
+
 	}
 
 	let resetButton = document.querySelector('.reset-button')
-	resetButton.addEventListener("click", stopAll)
+	resetButton.addEventListener("click", reset)
+
+	let stopButton = document.querySelector('.stop-button')
+	stopButton.addEventListener("click", stop)
 }
 
 
