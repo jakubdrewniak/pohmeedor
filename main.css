@@ -1,15 +1,21 @@
 :root {
 	--first-half-rotate: 0deg;
 	--second-half-rotate: 0deg;
+	--pie-dimension: 0;
+}
 
-  }
+.timer-container {
+	padding: auto auto;
+	position: relative;
+}
 
 .pie {
 	position: absolute;
-	width: 100px;
-	height: 200px;
+	width: var(--pie-dimension);
+	height: calc(var(--pie-dimension)*2);
 	overflow: hidden;
-	left: 150px;
+	left: 50%;
+	top: 50%;
 	-moz-transform-origin: left center;
 	-ms-transform-origin: left center;
 	-o-transform-origin: left center;
@@ -20,10 +26,10 @@
 .pie:BEFORE {
 	content: "";
 	position: absolute;
-	width: 100px;
-	height: 200px;
-	left: -100px;
-	border-radius: 100px 0 0 100px;
+	width: var(--pie-dimension);
+	height: calc(var(--pie-dimension)*2);
+	left: calc(var(--pie-dimension)*(-1));
+	border-radius: var(--pie-dimension) 0 0 var(--pie-dimension);
 	-moz-transform-origin: right center;
 	-ms-transform-origin: right center;
 	-o-transform-origin: right center;
@@ -40,49 +46,26 @@
 }
 
 .pie[data-start="0"] {
-	/* -moz-transform: rotate(30deg); */
-	/* Firefox */
-	/* -ms-transform: rotate(30deg); */
-	/* IE */
-	/* -webkit-transform: rotate(30deg); */
-	/* Safari and Chrome */
-	/* -o-transform: rotate(30deg); */
-	/* Opera */
 	transform: rotate(0deg);
 }
 
 .pie[data-start="180"] {
-	/* -moz-transform: rotate(180deg); */
-	/* Firefox */
-	/* -ms-transform: rotate(180deg); */
-	/* IE */
-	/* -webkit-transform: rotate(180deg); */
-	/* Safari and Chrome */
-	/* -o-transform: rotate(180deg); */
-	/* Opera */
 	transform: rotate(180deg);
 }
 
 .pie#first-half:BEFORE {
-	/* -moz-transform: rotate(31deg); */
-	/* Firefox */
-	/* -ms-transform: rotate(31deg); */
-	/* IE */
-	/* -webkit-transform: rotate(31deg); */
-	/* Safari and Chrome */
-	/* -o-transform: rotate(31deg); */
-	/* Opera */
 	transform: rotate(var(--first-half-rotate));
 }
 
 .pie#second-half:BEFORE {
-	/* -moz-transform: rotate(31deg); */
-	/* Firefox */
-	/* -ms-transform: rotate(31deg); */
-	/* IE */
-	/* -webkit-transform: rotate(31deg); */
-	/* Safari and Chrome */
-	/* -o-transform: rotate(31deg); */
-	/* Opera */
 	transform: rotate(var(--second-half-rotate));
+}
+
+.reset-button {
+	height: 20px;
+	border: 1px solid black;
+	border-radius: 50%;
+	cursor: pointer;
+	text-align: center;
+	position: absolute;
 }
