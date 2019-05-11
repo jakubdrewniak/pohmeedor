@@ -61,11 +61,15 @@
 	transform: rotate(var(--second-half-rotate));
 }
 
-.reset-button {
+.button {
 	height: 20px;
 	border: 1px solid black;
 	border-radius: 50%;
 	cursor: pointer;
 	text-align: center;
 	position: absolute;
+}
+
+.start-button {
+	display: inline-block
 }

@@ -1,12 +1,19 @@
 function Pohmeedor() {
 	this.timeInMin = 0.1
-	this.timeInSec = this.timeInMin * 60
 	this.root = document.documentElement;
 	this.init()
 }
 
 Pohmeedor.prototype.init = function () {
-	this.timer = 0
+	let startButton = document.querySelector('.start-button')
+	startButton.addEventListener("click", this.initializePie.bind(this))
+}
+
+Pohmeedor.prototype.initializePie = function () {
+	let timeInput = document.getElementById("time-min")
+	this.timeInMin = parseInt(timeInput.value)
+	this.timeInSec = this.timeInMin * 60
+
 	this.pieResizer()
 	this.runTimer()
 }
