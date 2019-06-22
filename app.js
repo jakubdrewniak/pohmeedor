@@ -1,37 +1,31 @@
 function Pohmeedor() {
-	this.timeInMin = 0.1
+	this.timeInMin
 	this.root = document.documentElement;
 	this.init()
 }
 
 Pohmeedor.prototype.init = function () {
-	this.startButton = document.querySelector('.start-button')
-	this.startButton.addEventListener("click", this.initializePie.bind(this))
+	// this.startButton = document.querySelector('.button--start-button')
+	// this.startButton.addEventListener("click", this.initializePie.bind(this))
+	this.timerOptions = document.querySelector('.timer-options')
+}
+
+Pohmeedor.prototype.predefinedStart = function (predefinedTime) {
+	this.timeInput = predefinedTime
+	this.initializePie()
+}
+
+Pohmeedor.prototype.customStart = function () {
+	this.timeInput = document.getElementById("time-min").value
+	this.initializePie()
 }
 
 Pohmeedor.prototype.initializePie = function () {
-
-	let timeInput = document.getElementById("time-min")
-	this.timeInMin = parseInt(timeInput.value)
+	this.timeInMin = parseInt(this.timeInput)
+	console.log('time in min', this.timeInMin);
 	this.timeInSec = this.timeInMin * 60
 
 	this.pieResizer()
-	this.runTimer()
-}
-
-Pohmeedor.prototype.setStartButtonDisplay = function (value) {
-	this.startButton.style.display = value
-}
-
-Pohmeedor.prototype.stop = function () {
-	this.root.style.setProperty('--first-half-rotate', "0deg");
-	this.root.style.setProperty('--second-half-rotate', "0deg");
-
-	this.setStartButtonDisplay("inline-block")
-}
-
-Pohmeedor.prototype.reset = function () {
-	this.stop()
 	this.runTimer()
 }
 
@@ -48,6 +42,22 @@ Pohmeedor.prototype.pieResizer = function () {
 	window.addEventListener('resize', setPieSize);
 }
 
+Pohmeedor.prototype.setStartButtonDisplay = function (value) {
+	this.timerOptions.style.display = value /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+}
+
+Pohmeedor.prototype.stop = function () {
+	this.root.style.setProperty('--first-half-rotate', "0deg");
+	this.root.style.setProperty('--second-half-rotate', "0deg");
+
+	this.setStartButtonDisplay("inline-block")
+}
+
+Pohmeedor.prototype.reset = function () {
+	this.stop()
+	this.runTimer()
+}
+
 Pohmeedor.prototype.runTimer = function () {
 	this.setStartButtonDisplay("none")
 
@@ -58,12 +68,12 @@ Pohmeedor.prototype.runTimer = function () {
 	let secondHalfIntervalToken
 	let secondHalfStartPermitted = true
 
-	const starterForFirstHalf = setInterval(() => {
+	const starterForFirstHalf = setInterval(() => { // change first half fillment degree every second
 		currentFHDegree += degreeForOneSecond
 		this.root.style.setProperty('--first-half-rotate', currentFHDegree + "deg")
 	}, 1000)
 
-	const stopperForFirstHalf = setTimeout(
+	const stopperForFirstHalf = setTimeout( // stop changing first half of pie after half of time 
 		() => {
 			clearInterval(starterForFirstHalf)
 			timerForSecondHalf()
@@ -83,26 +93,26 @@ Pohmeedor.prototype.runTimer = function () {
 	)
 
 	function reset() {
-		stopAll()
+		stopAllTimers()
 		self.reset()
 	}
 
 	function stop() {
-		stopAll()
+		stopAllTimers()
 		self.stop()
 	}
 
-	function stopAll() {
+	function stopAllTimers() {
 		secondHalfStartPermitted = false
 		clearInterval(starterForFirstHalf)
 		clearInterval(secondHalfIntervalToken)
 
 	}
 
-	let resetButton = document.querySelector('.reset-button')
+	let resetButton = document.querySelector('.button--reset-button')
 	resetButton.addEventListener("click", reset)
 
-	let stopButton = document.querySelector('.stop-button')
+	let stopButton = document.querySelector('.button--stop-button')
 	stopButton.addEventListener("click", stop)
 }
 

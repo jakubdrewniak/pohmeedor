@@ -14,19 +14,30 @@
 	<header>
 		<!-- <h1>Pohmeedor is here!</h1> -->
 	</header>
-	<section class="timer-container">
-		<div>
-			<span>Set time</span>
-			<input id="time-min" class="time-input" value="25" type="number" />
-			<span>min</span>
-			<div class="button start-button">Start</div>
-		</div>
 
+	<section>
+		<div class="timer-options">
+		<h1>POHMEEDOR</h1>
+			<h2>Set a new timer</h2>
+			<button onclick="pohmeedor.predefinedStart(5)" type=button>5 min</button>
+			<button onclick="pohmeedor.predefinedStart(10)" type=button>10 min</button>
+			<button onclick="pohmeedor.predefinedStart(15)" type=button>15 min</button>
+			<button onclick="pohmeedor.predefinedStart(20)" type=button>20 min</button>
+			<button onclick="pohmeedor.predefinedStart(25)" type=button>25 min</button>
+
+			<input id="time-min" class="time-input" type="number" />
+			<button class="button button--start-button" onclick="pohmeedor.customStart()" type=button>Go</button>
+
+		</div>
+	</section>
+
+
+	<section class="timer-container">
 		<div class="pie" data-start="0" id="first-half" data-before="10deg"></div>
 		<div class="pie" data-start="180" id="second-half"></div>
 
-		<div class="button reset-button">Reset</div>
-		<div class="button stop-button">Stop</div>
+		<div class="button button--reset-button">Reset</div>
+		<div class="button button--stop-button">Stop</div>
 		</div>
 	</section>
 	<script src="app.js"></script>
