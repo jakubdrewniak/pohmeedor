@@ -77,6 +77,10 @@
 	display: inline-block
 }
 
-.button--stop-button {
-	top: 60px;
+.timer-buttons {
+	display: none;
+}
+
+
+.button--stop-button, .button--reset-button {
 }

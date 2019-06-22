@@ -9,6 +9,7 @@
 	<link rel='stylesheet' href='normalize.css'>
 	<link rel='stylesheet' href='main.css'>
 	<link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
+	<link rel="shortcut icon" type="image/png" href="http://example.com/favicon.png" />
 </head>
 
 <body>
@@ -37,9 +38,11 @@
 		<div class="pie" data-start="0" id="first-half" data-before="10deg"></div>
 		<div class="pie" data-start="180" id="second-half"></div>
 
-		<div class="button button--reset-button">Reset</div>
-		<div class="button button--stop-button">Stop</div>
+		<div class="timer-buttons">
+			<button class="button button--reset-button">Reset</button>
+			<button class="button button--stop-button">Stop</button>
 		</div>
+
 	</section>
 	<script src="app.js"></script>
 	<script>var pohmeedor = new Pohmeedor()</script>

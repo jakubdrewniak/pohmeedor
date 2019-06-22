@@ -1,13 +1,11 @@
 function Pohmeedor() {
-	this.timeInMin
 	this.root = document.documentElement;
 	this.init()
 }
 
 Pohmeedor.prototype.init = function () {
-	// this.startButton = document.querySelector('.button--start-button')
-	// this.startButton.addEventListener("click", this.initializePie.bind(this))
 	this.timerOptions = document.querySelector('.timer-options')
+	this.timerButtons = document.querySelector('.timer-buttons')
 }
 
 Pohmeedor.prototype.predefinedStart = function (predefinedTime) {
@@ -16,15 +14,15 @@ Pohmeedor.prototype.predefinedStart = function (predefinedTime) {
 }
 
 Pohmeedor.prototype.customStart = function () {
-	this.timeInput = document.getElementById("time-min").value
-	this.initializePie()
+	this.timeInput = parseFloat(document.getElementById("time-min").value)
+	if (Number.isInteger(this.timeInput) && this.timeInput > 0)
+		this.initializePie()
+	else
+		alert('Number should be an integer greater than 0')
 }
 
 Pohmeedor.prototype.initializePie = function () {
-	this.timeInMin = parseInt(this.timeInput)
-	console.log('time in min', this.timeInMin);
-	this.timeInSec = this.timeInMin * 60
-
+	this.timeInSec = this.timeInput * 60
 	this.pieResizer()
 	this.runTimer()
 }
@@ -42,15 +40,20 @@ Pohmeedor.prototype.pieResizer = function () {
 	window.addEventListener('resize', setPieSize);
 }
 
-Pohmeedor.prototype.setStartButtonDisplay = function (value) {
-	this.timerOptions.style.display = value /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Pohmeedor.prototype.setOptionsDisplay = function (value) {
+	this.timerOptions.style.display = value
+}
+
+Pohmeedor.prototype.setTimerButtonsDisplay = function (value) {
+	this.timerButtons.style.display = value
 }
 
 Pohmeedor.prototype.stop = function () {
 	this.root.style.setProperty('--first-half-rotate', "0deg");
 	this.root.style.setProperty('--second-half-rotate', "0deg");
 
-	this.setStartButtonDisplay("inline-block")
+	this.setOptionsDisplay("inline-block")
+	this.setTimerButtonsDisplay("none")
 }
 
 Pohmeedor.prototype.reset = function () {
@@ -59,7 +62,8 @@ Pohmeedor.prototype.reset = function () {
 }
 
 Pohmeedor.prototype.runTimer = function () {
-	this.setStartButtonDisplay("none")
+	this.setOptionsDisplay("none")
+	this.setTimerButtonsDisplay("block")
 
 	const self = this
 	let currentFHDegree = 0
