@@ -6,6 +6,7 @@ function Pohmeedor() {
 Pohmeedor.prototype.init = function () {
 	this.timerOptions = document.querySelector('.timer-options')
 	this.timerButtons = document.querySelector('.timer-buttons')
+	this.timerCompleteMessage = document.querySelector('.timer-complete-message')
 }
 
 Pohmeedor.prototype.predefinedStart = function (predefinedTime) {
@@ -48,8 +49,17 @@ Pohmeedor.prototype.setTimerButtonsDisplay = function (value) {
 	this.timerButtons.style.display = value
 }
 
+Pohmeedor.prototype.setTimerMessageDisplay = function (value) {
+	this.timerCompleteMessage.style.display = value
+}
+
+Pohmeedor.prototype.setPieComplete = function () {
+	this.root.style.setProperty('--first-half-rotate', "180deg")
+	this.root.style.setProperty('--second-half-rotate', "180deg")
+	this.setTimerMessageDisplay('inline-block')
+}
+
 Pohmeedor.prototype.stop = function () {
-	this.secondHalfStartPermitted = false
 	clearInterval(this.starterForFirstHalf)
 	clearTimeout(this.stopperForFirstHalf)
 	clearInterval(this.secondHalfIntervalToken)
@@ -57,6 +67,7 @@ Pohmeedor.prototype.stop = function () {
 
 	this.root.style.setProperty('--first-half-rotate', "0deg");
 	this.root.style.setProperty('--second-half-rotate', "0deg");
+	this.setTimerMessageDisplay('none')
 
 	this.setOptionsDisplay("inline-block")
 	this.setTimerButtonsDisplay("none")
@@ -76,12 +87,17 @@ Pohmeedor.prototype.runTimer = function () {
 	let currentFHDegree = 0
 	let currentSHDegree = 0
 
-	this.secondHalfStartPermitted = true
 	this.starterForFirstHalf // starting timer from 0
 	this.stopperForFirstHalf // stops first half after halftime
 	this.secondHalfIntervalToken // start timer from halftime
 	this.stopperForSecondHalf // stops timer after full time
 	
+	this.stopperForSecondHalf = setTimeout(
+		() => { clearInterval(self.secondHalfIntervalToken) 
+			self.setPieComplete()
+		}, this.timeInSec * 1000
+	)
+
 	this.starterForFirstHalf = setInterval(() => {
 		currentFHDegree += degreeForOneSecond
 		this.root.style.setProperty('--first-half-rotate', currentFHDegree + "deg")
@@ -95,16 +111,14 @@ Pohmeedor.prototype.runTimer = function () {
 	)
 
 	function timerForSecondHalf() {
-		if (self.secondHalfStartPermitted)
-			self.secondHalfIntervalToken = setInterval(() => {
-				currentSHDegree += degreeForOneSecond
-				self.root.style.setProperty('--second-half-rotate', currentSHDegree + "deg")
-			}, 1000)
+		self.secondHalfIntervalToken = setInterval(() => {
+			currentSHDegree += degreeForOneSecond
+			self.root.style.setProperty('--second-half-rotate', currentSHDegree + "deg")
+		}, 1000)
 	}
 
-	this.stopperForSecondHalf = setTimeout(
-		() => { clearInterval(self.secondHalfIntervalToken) }, this.timeInSec * 1000
-	)
+
+	
 
 }
 

@@ -65,6 +65,11 @@
 	transform: rotate(var(--second-half-rotate));
 }
 
+.timer-complete-message {
+	display: none;
+	position: absolute;
+}
+
 .button {
 	height: 20px;
 	border: 1px solid black;
