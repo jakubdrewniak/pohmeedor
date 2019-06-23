@@ -5,6 +5,8 @@
 	--background-main: #FFFFFF;
 	--text-main: rgba(92, 164, 169, 1);
 	--input-background: rgba(155, 193, 188, 1);
+	--switch-default: rgba(92, 164, 169, 1);
+	--switch-checked: rgba(244, 241, 187, 1);
 }
 
 body {
@@ -15,7 +17,7 @@ body {
 .color-switch{
 	position: absolute;
 	z-index: 1;
-	right: 0;
+	right: 10px;
 }
 
 .main-menu {
@@ -188,37 +190,37 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .color-switch__label {
 	cursor: pointer;
 	text-indent: -9999px;
-	width: 200px;
-	height: 100px;
-	background: grey;
+	width: 50px;
+	height: 25px;
+	background: var(--switch-default);
 	display: block;
-	border-radius: 100px;
+	border-radius: 25px;
 	position: relative;
 }
 
 .color-switch__label:after {
 	content: '';
 	position: absolute;
-	top: 5px;
-	left: 5px;
-	width: 90px;
-	height: 90px;
+	top: 2px;
+	left: 2px;
+	width: 21px;
+	height: 21px;
 	background: #fff;
-	border-radius: 90px;
+	border-radius: 21px;
 	transition: 0.3s;
 }
 
 .color-switch__checkbox:checked + .color-switch__label {
-	background: #bada55;
+	background: var(--switch-checked);
 }
 
 .color-switch__checkbox:checked + .color-switch__label:after {
-	left: calc(100% - 5px);
+	left: calc(100% - 2px);
 	transform: translateX(-100%);
 }
 
 .color-switch__label:active:after {
-	width: 130px;
+	width: 40px;
 }
 
 
