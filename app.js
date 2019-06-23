@@ -112,6 +112,7 @@ Pohmeedor.prototype.runTimer = function () {
 
 	this.stopperForFirstHalf = setTimeout( // stop changing first half of pie after halftime 
 		() => {
+			this.root.style.setProperty('--first-half-rotate', "180deg")
 			clearInterval(self.starterForFirstHalf)
 			timerForSecondHalf()
 		}, this.timeInSec / 2 * 1000
