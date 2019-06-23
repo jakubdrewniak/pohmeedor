@@ -1,5 +1,6 @@
 function Pohmeedor() {
 	this.root = document.documentElement;
+	this.toggleColorMode()
 	this.init()
 }
 
@@ -91,9 +92,10 @@ Pohmeedor.prototype.runTimer = function () {
 	this.stopperForFirstHalf // stops first half after halftime
 	this.secondHalfIntervalToken // start timer from halftime
 	this.stopperForSecondHalf // stops timer after full time
-	
+
 	this.stopperForSecondHalf = setTimeout(
-		() => { clearInterval(self.secondHalfIntervalToken) 
+		() => {
+			clearInterval(self.secondHalfIntervalToken)
 			self.setPieComplete()
 		}, this.timeInSec * 1000
 	)
@@ -117,9 +119,14 @@ Pohmeedor.prototype.runTimer = function () {
 		}, 1000)
 	}
 
+}
 
-	
-
+Pohmeedor.prototype.toggleColorMode = function () {
+	document.getElementById('theme-switch').addEventListener('change', function (event) {
+		(event.target.checked) ?
+			document.body.setAttribute('data-theme', 'dark') :
+			document.body.removeAttribute('data-theme')
+	})
 }
 
 

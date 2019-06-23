@@ -2,10 +2,15 @@
 	--first-half-rotate: 0deg;
 	--second-half-rotate: 0deg;
 	--pie-dimension: 0;
+	--background-main: rgba(230, 235, 224, 1)
+}
+
+body {
+	background-color: var(--background-main)
 }
 
 .timer-options {
-	
+
 }
 
 .timer-container {
@@ -86,6 +91,9 @@
 	display: none;
 }
 
+.button--stop-button, .button--reset-button {}
 
-.button--stop-button, .button--reset-button {
+
+[data-theme="dark"] {
+	--background-main: rgba(55, 34, 72, 1);
 }
