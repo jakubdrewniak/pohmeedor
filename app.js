@@ -1,12 +1,13 @@
 function Pohmeedor() {
 	this.root = document.documentElement;
+	console.log(this.root.style)
 	this.toggleColorMode()
 	this.init()
 }
 
 Pohmeedor.prototype.init = function () {
 	this.timerOptions = document.querySelector('.main-menu')
-	this.timerButtons = document.querySelector('.timer-buttons')
+	this.timerContainer = document.querySelector('.timer-container')
 	this.timerCompleteMessage = document.querySelector('.timer-complete-message')
 }
 
@@ -30,12 +31,14 @@ Pohmeedor.prototype.initializePie = function () {
 }
 
 Pohmeedor.prototype.pieResizer = function () {
+	this.paddingForPie = 10
 	let self = this
 
 	function setPieSize() {
 		let windowHeight = window.innerHeight
 		let windowWidth = window.innerWidth
-		self.root.style.setProperty('--pie-dimension', Math.min(windowHeight, windowWidth) / 2 + "px");
+		self.root.style.setProperty('--pie-dimension',
+			Math.min(windowHeight - 2 * self.paddingForPie, windowWidth - 2 * self.paddingForPie) / 2 + "px");
 	}
 
 	setPieSize()
@@ -46,8 +49,8 @@ Pohmeedor.prototype.setOptionsDisplay = function (value) {
 	this.timerOptions.style.display = value
 }
 
-Pohmeedor.prototype.setTimerButtonsDisplay = function (value) {
-	this.timerButtons.style.display = value
+Pohmeedor.prototype.setTimerContainerDisplay = function (value) {
+	this.timerContainer.style.display = value
 }
 
 Pohmeedor.prototype.setTimerMessageDisplay = function (value) {
@@ -57,6 +60,7 @@ Pohmeedor.prototype.setTimerMessageDisplay = function (value) {
 Pohmeedor.prototype.setPieComplete = function () {
 	this.root.style.setProperty('--first-half-rotate', "180deg")
 	this.root.style.setProperty('--second-half-rotate', "180deg")
+	this.root.style.setProperty('--pie-color', 'rgba(244, 96, 54, 1)')
 	this.setTimerMessageDisplay('inline-block')
 }
 
@@ -71,7 +75,7 @@ Pohmeedor.prototype.stop = function () {
 	this.setTimerMessageDisplay('none')
 
 	this.setOptionsDisplay("block")
-	this.setTimerButtonsDisplay("none")
+	this.setTimerContainerDisplay("none")
 }
 
 Pohmeedor.prototype.reset = function () {
@@ -81,7 +85,8 @@ Pohmeedor.prototype.reset = function () {
 
 Pohmeedor.prototype.runTimer = function () {
 	this.setOptionsDisplay("none")
-	this.setTimerButtonsDisplay("block")
+	this.setTimerContainerDisplay("block")
+	this.root.style.removeProperty('--pie-color') // if pie was finished and color was changed- reset this property
 
 	const self = this
 	const degreeForOneSecond = 360 / this.timeInSec

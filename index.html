@@ -21,6 +21,7 @@
 		<div class="timer-options">
 			<h2 class="timer-options__title">Set a new timer</h2>
 			<div class="options-buttons">
+				
 				<button onclick="pohmeedor.predefinedStart(5)" type=button
 					class="button options-buttons__button">5min</button>
 				<button onclick="pohmeedor.predefinedStart(10)" type=button
@@ -37,21 +38,24 @@
 					<button class="button options-buttons__button--go" onclick="pohmeedor.customStart()"
 						type=button>GO!</button>
 				</div>
+
 			</div>
 		</div>
 	</section>
 
 
 	<section class="timer-container">
-		<div class="pie" data-start="0" id="first-half" data-before="10deg"></div>
-		<div class="pie" data-start="180" id="second-half"></div>
 		<h3 class="timer-complete-message">Time's up!</h3>
-		<div class="timer-buttons">
-			<button onclick="pohmeedor.reset()" class="button timer-buttons--reset-button">Reset</button>
-			<button onclick="pohmeedor.stop()" class="button timer-buttons--stop-button">Stop</button>
-		</div>
 
+		<div class="pie pie--first-half" data-start="0" id="first-half" data-before="10deg"></div>
+		<div class="pie pie--second-half" data-start="180" id="second-half"></div>
+
+		<div class="timer-buttons">
+			<button onclick="pohmeedor.reset()" class="button timer-buttons__reset-button">Reset</button>
+			<button onclick="pohmeedor.stop()" class="button timer-buttons__stop-button">Stop</button>
+		</div>
 	</section>
+
 	<script src="app.js"></script>
 	<script>var pohmeedor = new Pohmeedor()</script>
 </body>

@@ -6,6 +6,8 @@
 	--text-main: rgba(92, 164, 169, 1);
 	--input-background: rgba(155, 193, 188, 1);
 	--switch-default: rgba(92, 164, 169, 1);
+	--pie-color: rgba(65, 71, 112, 1);
+	--pie-finished: rgba(244, 96, 54, 1);
 }
 
 body {
@@ -106,10 +108,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 -----------------------------------------------*/
 
 .timer-container {
+	height: var(--pie-dimension);
 	position: relative;
-}
-
-.timer-buttons {
 	display: none;
 }
 
@@ -119,12 +119,20 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	height: calc(var(--pie-dimension)*2);
 	overflow: hidden;
 	left: 50%;
-	top: 50%;
+	/* top: 50%; */
 	-moz-transform-origin: left center;
 	-ms-transform-origin: left center;
 	-o-transform-origin: left center;
 	-webkit-transform-origin: left center;
 	transform-origin: left center;
+}
+
+.pie--first-half {
+	padding: 10px 10px 10px 0;
+}
+
+.pie--second-half {
+	padding: 10px 10px 10px 0;
 }
 
 .pie:BEFORE {
@@ -139,14 +147,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	-o-transform-origin: right center;
 	-webkit-transform-origin: right center;
 	transform-origin: right center;
-}
-
-.pie:BEFORE, .pie:nth-of-type(1):AFTER {
-	background-color: blue;
-}
-
-.pie:nth-of-type(2):AFTER, .pie:nth-of-type(2):BEFORE {
-	background-color: green;
+	background-color: var(--pie-color);
 }
 
 .pie[data-start="0"] {
@@ -166,11 +167,27 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 .timer-complete-message {
+    bottom: -10px;
 	display: none;
+	left: 0;
+	margin:0;
+    right: 0;
+	position: absolute;
+    text-align: center;
+    z-index: 1;
+}
+
+.timer-buttons {
 	position: absolute;
 }
 
-.timer-buttons--stop-button, .timer-buttons--reset-button {}
+.timer-buttons__stop-button, .timer-buttons__reset-button {
+	background: none;
+	border: none;
+	color: var(--text-main);
+	margin: 12px 6px;
+
+}
 
 /*-----------------------------------------------
 *   ..Timer
@@ -229,7 +246,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 -----------------------------------------------*/
 
 [data-theme="dark"] {
-	--background-main: rgba(55, 34, 72, 1);
+	--background-main: rgba(23, 17, 35, 1);
 }
 
 /*-----------------------------------------------
