@@ -6,7 +6,6 @@
 	--text-main: rgba(92, 164, 169, 1);
 	--input-background: rgba(155, 193, 188, 1);
 	--switch-default: rgba(92, 164, 169, 1);
-	--switch-checked: rgba(244, 241, 187, 1);
 }
 
 body {
@@ -211,10 +210,11 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 .color-switch__checkbox:checked + .color-switch__label {
-	background: var(--switch-checked);
+	background: #ffffff;
 }
 
 .color-switch__checkbox:checked + .color-switch__label:after {
+	background: var(--text-main);
 	left: calc(100% - 2px);
 	transform: translateX(-100%);
 }
