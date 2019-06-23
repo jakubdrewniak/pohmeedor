@@ -81,6 +81,11 @@ body {
 	width: 80%;
 }
 
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
 .options-buttons__button--custom input::placeholder {
 	color: var(--text-main);
 	opacity: 0.5;
@@ -166,11 +171,65 @@ body {
 
 .timer-buttons--stop-button, .timer-buttons--reset-button {}
 
+/*-----------------------------------------------
+*   ..Timer
+-----------------------------------------------*/
+
+/*-----------------------------------------------
+*   Switch
+-----------------------------------------------*/
+
+.color-switch__checkbox {
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.color-switch__label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 200px;
+	height: 100px;
+	background: grey;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.color-switch__label:after {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 90px;
+	height: 90px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.color-switch__checkbox:checked + .color-switch__label {
+	background: #bada55;
+}
+
+.color-switch__checkbox:checked + .color-switch__label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+.color-switch__label:active:after {
+	width: 130px;
+}
+
+
+/*-----------------------------------------------
+*   Theme colors
+-----------------------------------------------*/
+
 [data-theme="dark"] {
 	--background-main: rgba(55, 34, 72, 1);
 }
 
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
+/*-----------------------------------------------
+*   ..Theme colors
+-----------------------------------------------*/
