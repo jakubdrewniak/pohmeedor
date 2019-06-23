@@ -2,20 +2,109 @@
 	--first-half-rotate: 0deg;
 	--second-half-rotate: 0deg;
 	--pie-dimension: 0;
-	--background-main: rgba(230, 235, 224, 1)
+	--background-main: #FFFFFF;
+	--text-main: rgba(92, 164, 169, 1);
+	--input-background: rgba(155, 193, 188, 1);
 }
 
 body {
-	background-color: var(--background-main)
+	background-color: var(--background-main);
+	font-family: 'Open Sans', sans-serif;
+}
+
+.color-switch{
+	position: absolute;
+	z-index: 1;
+	right: 0;
+}
+
+.main-menu {
+	height: 100vh;
+	position: relative;
 }
 
 .timer-options {
-
+	border: 2px solid var(--text-main);
+	border-radius: 25px;
+	color: var(--text-main);
+	height: max-content;
+	margin: auto auto;
+	width: max-content;
+	padding: 10px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0; 
+	left: 0;
 }
 
-.timer-container {
-	padding: auto auto;
+.timer-options__title {
+	text-align: center;
+}
+
+.button {
+	cursor: pointer;
+	text-align: center;
+	font-weight: 700;
+}
+
+.options-buttons {
+	display: flex;
+	justify-content: center;
+}
+
+.options-buttons__button {
+	background-color: var(--background-main);
+	border-radius: 50%;
+	border: 2px solid var(--text-main);
+	color: var(--text-main);
+	height: 75px;
+	margin: 5px;
+	width: 75px;
+}
+
+.options-buttons__button--custom {
+	display: flex;
+	justify-content: center;
 	position: relative;
+}
+
+.options-buttons__button--custom input {
+	background-color: var(--background-main);
+	border: none;
+	border-bottom: 2px solid var(--text-main);
+	color: var(--text-main);
+	display: block;
+	font-weight: 700;
+	margin: auto;
+	text-align: center;
+	width: 80%;
+}
+
+.options-buttons__button--custom input::placeholder {
+	color: var(--text-main);
+	opacity: 0.5;
+}
+
+.options-buttons__button--go {
+	background-color: var(--background-main);
+	bottom: 5px;
+	border: none;
+	color: var(--text-main);
+	border-radius: 50%;
+	position: absolute;
+}
+
+/*-----------------------------------------------
+*   Timer
+-----------------------------------------------*/
+
+.timer-container {
+	position: relative;
+}
+
+.timer-buttons {
+	display: none;
 }
 
 .pie {
@@ -75,25 +164,13 @@ body {
 	position: absolute;
 }
 
-.button {
-	height: 20px;
-	border: 1px solid black;
-	border-radius: 5px;
-	cursor: pointer;
-	text-align: center;
-}
-
-.button--start-button {
-	display: inline-block
-}
-
-.timer-buttons {
-	display: none;
-}
-
-.button--stop-button, .button--reset-button {}
-
+.timer-buttons--stop-button, .timer-buttons--reset-button {}
 
 [data-theme="dark"] {
 	--background-main: rgba(55, 34, 72, 1);
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }

@@ -12,26 +12,32 @@
 </head>
 
 <body>
-	<header>
-		<div class="switch">
-			<input type="checkbox" id="theme-switch">
-			<label for="themeSwitch">Toggle color mode</label>
-		</div>
-	</header>
+	<div class="color-switch">
+		<input type="checkbox" id="theme-switch">
+		<label for="themeSwitch">Toggle color mode</label>
+	</div>
 
-	<section>
+	<section class="main-menu">
 		<div class="timer-options">
-			<h1>POHMEEDOR</h1>
-			<h2>Set a new timer</h2>
-			<button onclick="pohmeedor.predefinedStart(5)" type=button>5 min</button>
-			<button onclick="pohmeedor.predefinedStart(10)" type=button>10 min</button>
-			<button onclick="pohmeedor.predefinedStart(15)" type=button>15 min</button>
-			<button onclick="pohmeedor.predefinedStart(20)" type=button>20 min</button>
-			<button onclick="pohmeedor.predefinedStart(25)" type=button>25 min</button>
+			<h2 class="timer-options__title">Set a new timer</h2>
+			<div class="options-buttons">
+				<button onclick="pohmeedor.predefinedStart(5)" type=button
+					class="button options-buttons__button">5min</button>
+				<button onclick="pohmeedor.predefinedStart(10)" type=button
+					class="button options-buttons__button">10min</button>
+				<button onclick="pohmeedor.predefinedStart(15)" type=button
+					class="button options-buttons__button">15min</button>
+				<button onclick="pohmeedor.predefinedStart(20)" type=button
+					class="button options-buttons__button">20min</button>
+				<button onclick="pohmeedor.predefinedStart(25)" type=button
+					class="button options-buttons__button">25min</button>
 
-			<input id="time-min" class="time-input" type="number" />
-			<button class="button button--start-button" onclick="pohmeedor.customStart()" type=button>Go</button>
-
+				<div class="options-buttons__button options-buttons__button--custom">
+					<input id="time-min" class="time-input" type="number" placeholder="... min" />
+					<button class="button options-buttons__button--go" onclick="pohmeedor.customStart()"
+						type=button>GO!</button>
+				</div>
+			</div>
 		</div>
 	</section>
 
@@ -41,8 +47,8 @@
 		<div class="pie" data-start="180" id="second-half"></div>
 		<h3 class="timer-complete-message">Time's up!</h3>
 		<div class="timer-buttons">
-			<button onclick="pohmeedor.reset()" class="button button--reset-button">Reset</button>
-			<button onclick="pohmeedor.stop()" class="button button--stop-button">Stop</button>
+			<button onclick="pohmeedor.reset()" class="button timer-buttons--reset-button">Reset</button>
+			<button onclick="pohmeedor.stop()" class="button timer-buttons--stop-button">Stop</button>
 		</div>
 
 	</section>

@@ -5,7 +5,7 @@ function Pohmeedor() {
 }
 
 Pohmeedor.prototype.init = function () {
-	this.timerOptions = document.querySelector('.timer-options')
+	this.timerOptions = document.querySelector('.main-menu')
 	this.timerButtons = document.querySelector('.timer-buttons')
 	this.timerCompleteMessage = document.querySelector('.timer-complete-message')
 }
@@ -70,7 +70,7 @@ Pohmeedor.prototype.stop = function () {
 	this.root.style.setProperty('--second-half-rotate', "0deg");
 	this.setTimerMessageDisplay('none')
 
-	this.setOptionsDisplay("inline-block")
+	this.setOptionsDisplay("block")
 	this.setTimerButtonsDisplay("none")
 }
 
