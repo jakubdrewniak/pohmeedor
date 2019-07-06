@@ -30,6 +30,41 @@ Pohmeedor.prototype.initializePie = function () {
 	this.runTimer()
 }
 
+
+Pohmeedor.prototype.apiTest = function() {
+	let ob = {
+		timer: {
+			id: "9d8f128f-e6ec-413d-b4d0-31fa948bab2f",
+			duration: 60000,
+			name: "my awesome timer"
+		}
+	}
+
+	fetch("https://pohmeedor.herokuapp.com/api/timers",
+		{
+			method: "post",
+			headers: {
+				"Content-type": "application/json; charset=UTF-8"
+			},
+			body: JSON.stringify(ob)
+		}).then(res => res.json())
+		.then(res => {
+			console.log("post:");
+			console.log(res);
+		})
+
+	fetch("https://pohmeedor.herokuapp.com/api/timers/9d8f128f-e6ec-413d-b4d0-31fa948bab2f").then(resp => {
+		console.log(resp.headers.get("Content-Type"));
+		console.log(resp.headers.get("Date"));
+
+		console.log(resp.status);
+		console.log(resp.statusText);
+		console.log(resp.type);
+		console.log(resp.url);
+		console.log(resp.body);
+	})
+}
+
 Pohmeedor.prototype.pieResizer = function () {
 	this.paddingForPie = 10
 	let self = this
