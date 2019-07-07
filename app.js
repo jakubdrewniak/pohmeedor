@@ -28,6 +28,7 @@ Pohmeedor.prototype.initializePie = function () {
 	this.timeInSec = this.timeInput * 60
 	this.pieResizer()
 	this.runTimer()
+	this.apiTest()
 }
 
 
@@ -53,7 +54,7 @@ Pohmeedor.prototype.apiTest = function() {
 			console.log(res);
 		})
 
-	fetch("https://pohmeedor.herokuapp.com/api/timers/9d8f128f-e6ec-413d-b4d0-31fa948bab2f").then(resp => {
+	fetch("https://pohmeedor.herokuapp.com/api/timers").then(resp => {
 		console.log(resp.headers.get("Content-Type"));
 		console.log(resp.headers.get("Date"));
 
