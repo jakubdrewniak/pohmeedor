@@ -248,12 +248,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	transition: 0.3s;
 }
 
-.color-switch__checkbox:checked + .color-switch__label {
-	background: #ffffff;
-}
-
 .color-switch__checkbox:checked + .color-switch__label:after {
-	background: var(--text-main);
+	background: var(--background-main);
 	left: calc(100% - 2px);
 	transform: translateX(-100%);
 }
