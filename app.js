@@ -1,5 +1,6 @@
 function Pohmeedor() {
 	this.root = document.documentElement;
+	this.BASE_URL = "https://pohmeedor.herokuapp.com/api/timers"
 	this.toggleColorMode()
 	this.init()
 }
@@ -33,7 +34,7 @@ Pohmeedor.prototype.initializePie = function () {
 Pohmeedor.prototype.sendTimer = function () {
 	this.timerName = document.getElementById("timer-name").value
 	this.timerUUID = this.generateUUID()
-
+	const self = this
 	const timerToSend = {
 		timer: {
 			id: this.timerUUID,
@@ -43,7 +44,7 @@ Pohmeedor.prototype.sendTimer = function () {
 	}
 
 	function postTimer() {
-		fetch("https://pohmeedor.herokuapp.com/api/timers",
+		fetch(self.BASE_URL,
 			{
 				method: "post",
 				headers: { "Content-type": "application/json; charset=UTF-8" },
