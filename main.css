@@ -52,19 +52,33 @@ body {
 }
 
 .timer-options {
-	border: 2px solid var(--text-main);
-	border-radius: 25px;
-	color: var(--text-main);
 	height: max-content;
 	margin: auto auto;
 	width: max-content;
-	padding: 10px;
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	right: 0; 
 	left: 0;
 }
+
+.timer-options__upper-segment, .timer-options__lower-segment {
+	border: 2px solid var(--text-main);
+	color: var(--text-main);
+	width: 100%;
+	padding: 25px 10px;
+}
+
+.timer-options__upper-segment {
+	border-radius: 25px 25px 0 0;
+
+}
+
+.timer-options__lower-segment {
+	border-radius:  0 0 25px 25px;
+	border-top: none;
+}
+
 
 .timer-options__title {
 	text-align: center;
@@ -109,6 +123,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	color: var(--text-main);
 	border-radius: 50%;
 	position: absolute;
+}
+
+.timer-options__find-container {
+	display: flex;
 }
 
 /*-----------------------------------------------

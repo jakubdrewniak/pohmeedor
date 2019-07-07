@@ -60,18 +60,27 @@ Pohmeedor.prototype.sendTimer = function () {
 
 }
 
-Pohmeedor.prototype.apiTest = function () {
+Pohmeedor.prototype.findTimerById = function () {
+	const timerToFindId = document.getElementById("timer-id").value
+	const self = this
 
-	fetch("https://pohmeedor.herokuapp.com/api/timers").then(resp => {
-		console.log(resp.headers.get("Content-Type"));
-		console.log(resp.headers.get("Date"));
+	function getTimer() {
+		fetch(self.BASE_URL + "/" + timerToFindId)
+		.then(res => {
+			if (res.status === 500){
+				getTimer()
+				return
+			}
+			return res.json()
+		})
+		.then(resp => {
+			if (resp)
+				console.log('respdata', resp.data);
+		})
+	}
 
-		console.log(resp.status);
-		console.log(resp.statusText);
-		console.log(resp.type);
-		console.log(resp.url);
-		console.log(resp.body);
-	})
+	getTimer()
+	
 }
 
 Pohmeedor.prototype.pieResizer = function () {
