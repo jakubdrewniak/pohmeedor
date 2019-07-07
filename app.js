@@ -1,6 +1,5 @@
 function Pohmeedor() {
 	this.root = document.documentElement;
-	console.log(this.root.style)
 	this.toggleColorMode()
 	this.init()
 }
@@ -28,31 +27,39 @@ Pohmeedor.prototype.initializePie = function () {
 	this.timeInSec = this.timeInput * 60
 	this.pieResizer()
 	this.runTimer()
-	this.apiTest()
+	this.sendTimer()
 }
 
+Pohmeedor.prototype.sendTimer = function () {
+	this.timerName = document.getElementById("timer-name").value
+	this.timerUUID = this.generateUUID()
 
-Pohmeedor.prototype.apiTest = function() {
-	let ob = {
+	const timerToSend = {
 		timer: {
-			id: "9d8f128f-e6ec-413d-b4d0-31fa948bab2f",
-			duration: 60000,
-			name: "my awesome timer"
+			id: this.timerUUID,
+			duration: this.timeInput * 60 * 1000,
+			name: this.timerName || 'No name provided'
 		}
 	}
 
-	fetch("https://pohmeedor.herokuapp.com/api/timers",
-		{
-			method: "post",
-			headers: {
-				"Content-type": "application/json; charset=UTF-8"
-			},
-			body: JSON.stringify(ob)
-		}).then(res => res.json())
-		.then(res => {
-			console.log("post:");
-			console.log(res);
-		})
+	function postTimer() {
+		fetch("https://pohmeedor.herokuapp.com/api/timers",
+			{
+				method: "post",
+				headers: { "Content-type": "application/json; charset=UTF-8" },
+				body: JSON.stringify(timerToSend)
+			}).then(res => {
+				if (res.status === 500) { // repeat sending post until response status is not 500; remove this workaround when database is fixed
+					postTimer()
+				}
+			})
+	}
+
+	postTimer()
+
+}
+
+Pohmeedor.prototype.apiTest = function () {
 
 	fetch("https://pohmeedor.herokuapp.com/api/timers").then(resp => {
 		console.log(resp.headers.get("Content-Type"));
@@ -169,6 +176,12 @@ Pohmeedor.prototype.toggleColorMode = function () {
 			document.body.setAttribute('data-theme', 'dark') :
 			document.body.removeAttribute('data-theme')
 	})
+}
+
+Pohmeedor.prototype.generateUUID = function () {
+	return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+		(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+	)
 }
 
 
