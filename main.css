@@ -10,9 +10,30 @@
 	--pie-finished: rgba(244, 96, 54, 1);
 }
 
+/*-----------------------------------------------
+*   General definitions
+-----------------------------------------------*/
+
 body {
 	background-color: var(--background-main);
 	font-family: 'Open Sans', sans-serif;
+}
+
+.pohmeedor__input {
+	background-color: var(--background-main);
+	border: none;
+	border-bottom: 2px solid var(--text-main);
+	color: var(--text-main);
+	display: block;
+	font-weight: 700;
+	margin: auto;
+	text-align: center;
+	width: 80%;
+}
+
+.pohmeedor__input::placeholder {
+	color: var(--text-main);
+	opacity: 0.5;
 }
 
 .color-switch{
@@ -20,6 +41,10 @@ body {
 	z-index: 1;
 	right: 10px;
 }
+
+/*-----------------------------------------------
+*   Main menu
+-----------------------------------------------*/
 
 .main-menu {
 	height: 100vh;
@@ -72,26 +97,9 @@ body {
 	position: relative;
 }
 
-.options-buttons__button--custom input {
-	background-color: var(--background-main);
-	border: none;
-	border-bottom: 2px solid var(--text-main);
-	color: var(--text-main);
-	display: block;
-	font-weight: 700;
-	margin: auto;
-	text-align: center;
-	width: 80%;
-}
-
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
-}
-
-.options-buttons__button--custom input::placeholder {
-	color: var(--text-main);
-	opacity: 0.5;
 }
 
 .options-buttons__button--go {
@@ -190,10 +198,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 /*-----------------------------------------------
-*   ..Timer
------------------------------------------------*/
-
-/*-----------------------------------------------
 *   Switch
 -----------------------------------------------*/
 
@@ -248,7 +252,3 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 [data-theme="dark"] {
 	--background-main: rgba(23, 17, 35, 1);
 }
-
-/*-----------------------------------------------
-*   ..Theme colors
------------------------------------------------*/
