@@ -99,9 +99,32 @@ Pohmeedor.prototype.setReceivedTimerDetails = function (receivedTimer) {
 	document.getElementById('receivedTimerName').innerText = receivedTimer.name
 	document.getElementById('receivedTimerDuration').innerText = receivedTimer.duration / 60000 + " min"
 	document.getElementById('receivedTimerStart').innerText = (new Date(receivedTimer.start_time)).toLocaleString()
-	// document.getElementById('remainingTime').innerText = receivedTimer.name
 	document.getElementById('receivedTimerId').innerText = receivedTimer.id
 	this.setReceivedTimerDisplay('block')
+	this.receivedTimerCountdown(receivedTimer)
+}
+
+Pohmeedor.prototype.receivedTimerCountdown = function (receivedTimer) {
+	const timer = function () {
+		const now = new Date().getTime();
+		const end = new Date(receivedTimer.start_time).getTime() + receivedTimer.duration
+		const distance = end - now
+
+		const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+		const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+		const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+		document.getElementById('remainingTime').innerText = hours + "h "
+			+ minutes + "m " + seconds + "s ";
+
+		if (distance < 0) {
+			clearInterval(timer);
+			document.getElementById("remainingTime").innerHTML = 'Expired'
+		}
+	}
+
+	timer()
+	setInterval(timer, 1000)
 }
 
 Pohmeedor.prototype.pieResizer = function () {
