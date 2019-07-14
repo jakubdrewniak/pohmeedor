@@ -17,36 +17,34 @@
 		<label class="color-switch__label" for="theme-switch">Toggle color mode</label>
 	</div>
 
-	<section class="main-menu">
-		<div class="timer-options">
-			<div class="timer-options__upper-segment">
-				<h2 class="timer-options__title">Set a new timer</h2>
-				<div class="options-buttons">
-					<button onclick="pohmeedor.predefinedStart(5)" type=button
-						class="button options-buttons__button">5min</button>
-					<button onclick="pohmeedor.predefinedStart(10)" type=button
-						class="button options-buttons__button">10min</button>
-					<button onclick="pohmeedor.predefinedStart(15)" type=button
-						class="button options-buttons__button">15min</button>
-					<button onclick="pohmeedor.predefinedStart(20)" type=button
-						class="button options-buttons__button">20min</button>
-					<button onclick="pohmeedor.predefinedStart(25)" type=button
-						class="button options-buttons__button">25min</button>
-					<div class="options-buttons__button options-buttons__button--custom">
-						<input id="time-min" class="pohmeedor__input" type="number" placeholder="... min" />
-						<button class="button options-buttons__button--go" onclick="pohmeedor.customStart()"
-							type=button>GO!</button>
-					</div>
+	<section class="timer-options">
+		<div class="timer-options__upper-segment">
+			<h2 class="timer-options__title">Set a new timer</h2>
+			<div class="options-buttons">
+				<button onclick="pohmeedor.predefinedStart(5)" type=button
+					class="button options-buttons__button">5min</button>
+				<button onclick="pohmeedor.predefinedStart(10)" type=button
+					class="button options-buttons__button">10min</button>
+				<button onclick="pohmeedor.predefinedStart(15)" type=button
+					class="button options-buttons__button">15min</button>
+				<button onclick="pohmeedor.predefinedStart(20)" type=button
+					class="button options-buttons__button">20min</button>
+				<button onclick="pohmeedor.predefinedStart(25)" type=button
+					class="button options-buttons__button">25min</button>
+				<div class="options-buttons__button options-buttons__button--custom">
+					<input id="time-min" class="pohmeedor__input" type="number" placeholder="... min" />
+					<button class="button options-buttons__button--go" onclick="pohmeedor.customStart()"
+						type=button>GO!</button>
 				</div>
-				<input id="timer-name" class="pohmeedor__input" type="text" placeholder="Optional name for timer..." />
 			</div>
-			<div class="timer-options__lower-segment">
-				<h2 class="timer-options__title">Find exisiting timer</h2>
-				<div class="timer-options__find-container">
-					<input id="timer-id" class="pohmeedor__input" type="text" placeholder="Paste timer id..." />
-					<button onclick="pohmeedor.findTimerById()" type=button
-						class="button options-buttons__button">Find</button>
-				</div>
+			<input id="timer-name" class="pohmeedor__input" type="text" placeholder="Optional name for timer..." />
+		</div>
+		<div class="timer-options__lower-segment">
+			<h2 class="timer-options__title">Find exisiting timer</h2>
+			<div class="timer-options__find-container">
+				<input id="timer-id" class="pohmeedor__input" type="text" placeholder="Paste timer id..." />
+				<button onclick="pohmeedor.findTimerById()" type=button
+					class="button options-buttons__button">Find</button>
 			</div>
 		</div>
 	</section>
@@ -67,7 +65,7 @@
 
 	</section>
 
-	<div class="timer-details" id="timerDetails">
+	<section class="timer-details" id="timerDetails">
 		<div class="timer-details-box">
 			<h2 class="timer-details__title">Your timer details</h2>
 			<div>
@@ -81,7 +79,7 @@
 				<button onclick="pohmeedor.copyId()" class="button timer-buttons__copy-button">Copy</button>
 			</div>
 		</div>
-	</div>
+	</section>
 
 	<script src="app.js"></script>
 	<script>var pohmeedor = new Pohmeedor()</script>

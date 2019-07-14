@@ -46,11 +46,6 @@ body {
 *   Main menu
 -----------------------------------------------*/
 
-.main-menu {
-	height: 100vh;
-	position: relative;
-}
-
 .timer-options, .timer-details {
 	height: max-content;
 	margin: auto auto;
@@ -215,6 +210,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .timer-details {
 	display: none;
+	z-index: 2;
 }
 
 .timer-details-box {
