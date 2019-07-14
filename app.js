@@ -30,7 +30,7 @@ Pohmeedor.prototype.initializePie = function () {
 	this.pieResizer()
 	this.runTimer()
 	this.sendTimer()
-	this.timerDetails.style.display = "none"
+	this.toggleDetails("none")
 	this.setTimerDetails()
 }
 
@@ -119,6 +119,17 @@ Pohmeedor.prototype.setTimerMessageDisplay = function (value) {
 	this.timerCompleteMessage.style.display = value
 }
 
+Pohmeedor.prototype.toggleDetails = function (value = null) {
+	if (value)
+		this.timerDetails.style.display = value
+	else {
+		if (this.timerDetails.style.display === "none")
+			this.timerDetails.style.display = "block"
+		else
+			this.timerDetails.style.display = "none"
+	}
+}
+
 Pohmeedor.prototype.setPieComplete = function () {
 	this.root.style.setProperty('--first-half-rotate', "180deg")
 	this.root.style.setProperty('--second-half-rotate', "180deg")
@@ -138,19 +149,12 @@ Pohmeedor.prototype.stop = function () {
 
 	this.setOptionsDisplay("block")
 	this.setTimerContainerDisplay("none")
-	this.timerDetails.style.display = "none"
+	this.toggleDetails("none")
 }
 
 Pohmeedor.prototype.reset = function () {
 	this.stop()
 	this.runTimer()
-}
-
-Pohmeedor.prototype.toggleDetails = function () {
-	if (this.timerDetails.style.display === "none")
-		this.timerDetails.style.display = "block"
-	else
-		this.timerDetails.style.display = "none"
 }
 
 Pohmeedor.prototype.copyId = function () {
