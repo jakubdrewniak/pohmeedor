@@ -61,8 +61,27 @@
 		<div class="timer-buttons">
 			<button onclick="pohmeedor.reset()" class="button timer-buttons__reset-button">Reset</button>
 			<button onclick="pohmeedor.stop()" class="button timer-buttons__stop-button">Stop</button>
+			<button onclick="pohmeedor.toggleDetails()" class="button timer-buttons__toggle-details-button">Toggle
+				details</button>
 		</div>
+
 	</section>
+
+	<div class="timer-details" id="timerDetails">
+		<div class="timer-details-box">
+			<h2 class="timer-details__title">Your timer details</h2>
+			<div>
+				<span>Name: </span><span id="timerName"></span>
+			</div>
+			<div>
+				<span>Time: </span><span id="timerTime"></span>
+			</div>
+			<div>
+				<span>Id: </span><span id="timerId"></span>
+				<button onclick="pohmeedor.copyId()" class="button timer-buttons__copy-button">Copy</button>
+			</div>
+		</div>
+	</div>
 
 	<script src="app.js"></script>
 	<script>var pohmeedor = new Pohmeedor()</script>

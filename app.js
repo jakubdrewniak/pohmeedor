@@ -9,6 +9,7 @@ Pohmeedor.prototype.init = function () {
 	this.timerOptions = document.querySelector('.main-menu')
 	this.timerContainer = document.querySelector('.timer-container')
 	this.timerCompleteMessage = document.querySelector('.timer-complete-message')
+	this.timerDetails = document.getElementById('timerDetails')
 }
 
 Pohmeedor.prototype.predefinedStart = function (predefinedTime) {
@@ -29,17 +30,19 @@ Pohmeedor.prototype.initializePie = function () {
 	this.pieResizer()
 	this.runTimer()
 	this.sendTimer()
+	this.timerDetails.style.display = "none"
+	this.setTimerDetails()
 }
 
 Pohmeedor.prototype.sendTimer = function () {
-	this.timerName = document.getElementById("timer-name").value
+	this.timerName = document.getElementById("timer-name").value || 'No name provided'
 	this.timerUUID = this.generateUUID()
 	const self = this
 	const timerToSend = {
 		timer: {
 			id: this.timerUUID,
 			duration: this.timeInput * 60 * 1000,
-			name: this.timerName || 'No name provided'
+			name: this.timerName
 		}
 	}
 
@@ -60,27 +63,33 @@ Pohmeedor.prototype.sendTimer = function () {
 
 }
 
+Pohmeedor.prototype.setTimerDetails = function () {
+	document.getElementById('timerName').innerText = this.timerName
+	document.getElementById('timerId').innerText = this.timerUUID
+	document.getElementById('timerTime').innerText = this.timeInput + " min"
+}
+
 Pohmeedor.prototype.findTimerById = function () {
 	const timerToFindId = document.getElementById("timer-id").value
 	const self = this
 
 	function getTimer() {
 		fetch(self.BASE_URL + "/" + timerToFindId)
-		.then(res => {
-			if (res.status === 500){
-				getTimer()
-				return
-			}
-			return res.json()
-		})
-		.then(resp => {
-			if (resp)
-				console.log('respdata', resp.data);
-		})
+			.then(res => {
+				if (res.status === 500) {
+					getTimer()
+					return
+				}
+				return res.json()
+			})
+			.then(resp => {
+				if (resp)
+					console.log('respdata', resp.data);
+			})
 	}
 
 	getTimer()
-	
+
 }
 
 Pohmeedor.prototype.pieResizer = function () {
@@ -129,11 +138,30 @@ Pohmeedor.prototype.stop = function () {
 
 	this.setOptionsDisplay("block")
 	this.setTimerContainerDisplay("none")
+	this.timerDetails.style.display = "none"
 }
 
 Pohmeedor.prototype.reset = function () {
 	this.stop()
 	this.runTimer()
+}
+
+Pohmeedor.prototype.toggleDetails = function () {
+	if (this.timerDetails.style.display === "none")
+		this.timerDetails.style.display = "block"
+	else
+		this.timerDetails.style.display = "none"
+}
+
+Pohmeedor.prototype.copyId = function () {
+	let el = document.createElement('textarea');
+	el.value = this.timerUUID
+	el.setAttribute('readonly', '');
+	el.style = { position: 'absolute', left: '-9999px' };
+	document.body.appendChild(el);
+	el.select();
+	document.execCommand('copy');
+	document.body.removeChild(el);
 }
 
 Pohmeedor.prototype.runTimer = function () {
