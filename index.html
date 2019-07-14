@@ -72,30 +72,37 @@
 				<span>Name: </span><span id="timerName"></span>
 			</div>
 			<div>
-				<span>Time: </span><span id="timerTime"></span>
+				<span>Duration: </span><span id="timerTime"></span>
 			</div>
 			<div>
 				<span>Id: </span><span id="timerId"></span>
 				<button onclick="pohmeedor.copyId()"
-					class="pohmeedor__button pohmeedor__button--simple timer-buttons__copy-button">Copy</button>
+					class="pohmeedor__button pohmeedor__button--simple timer-details__copy-button">Copy</button>
 			</div>
 		</div>
 	</section>
 
-	<section class="pohmeedor__section" id="timerReceived">
-		<!-- <div class="timer-details-box">
-			<h2 class="timer-details__title">Your timer details</h2>
+	<section class="pohmeedor__section timer-received" id="timerReceived">
+		<div class="pohmeedor__box timer-received__box">
+			<h2 class="pohmeedor__box--title">Timer found</h2>
 			<div>
-				<span>Name: </span><span id="timerName"></span>
+				<span>Name: </span><span id="receivedTimerName"></span>
 			</div>
 			<div>
-				<span>Time: </span><span id="timerTime"></span>
+				<span>Duration: </span><span id="receivedTimerDuration"></span>
 			</div>
 			<div>
-				<span>Id: </span><span id="timerId"></span>
-				<button onclick="pohmeedor.copyId()" class="button timer-buttons__copy-button">Copy</button>
+				<span>Started at: </span><span id="receivedTimerStart"></span>
 			</div>
-		</div> -->
+			<div>
+				<span>Remaining time: </span><span id="remainingTime"></span>
+			</div>
+			<div>
+				<span>Id: </span><span id="receivedTimerId"></span>
+			</div>
+			<button onclick="pohmeedor.backToOptions()"
+				class="pohmeedor__button pohmeedor__button--simple timer-received__back-button">Back</button>
+		</div>
 	</section>
 
 	<script src="app.js"></script>

@@ -10,6 +10,7 @@ Pohmeedor.prototype.init = function () {
 	this.timerContainer = document.getElementById('timerContainer')
 	this.timerCompleteMessage = document.getElementById('completeMessage')
 	this.timerDetails = document.getElementById('timerDetails')
+	this.timerReceived = document.getElementById('timerReceived')
 }
 
 Pohmeedor.prototype.predefinedStart = function (predefinedTime) {
@@ -83,13 +84,24 @@ Pohmeedor.prototype.findTimerById = function () {
 				return res.json()
 			})
 			.then(resp => {
-				if (resp)
-					console.log('respdata', resp.data);
+				if (resp) {
+					self.setOptionsDisplay("none")
+					self.setReceivedTimerDetails(resp.data)
+				}
 			})
 	}
 
 	getTimer()
 
+}
+
+Pohmeedor.prototype.setReceivedTimerDetails = function (receivedTimer) {
+	document.getElementById('receivedTimerName').innerText = receivedTimer.name
+	document.getElementById('receivedTimerDuration').innerText = receivedTimer.duration / 60000 + " min"
+	document.getElementById('receivedTimerStart').innerText = (new Date(receivedTimer.start_time)).toLocaleString()
+	// document.getElementById('remainingTime').innerText = receivedTimer.name
+	document.getElementById('receivedTimerId').innerText = receivedTimer.id
+	this.setReceivedTimerDisplay('block')
 }
 
 Pohmeedor.prototype.pieResizer = function () {
@@ -117,6 +129,10 @@ Pohmeedor.prototype.setTimerContainerDisplay = function (value) {
 
 Pohmeedor.prototype.setTimerMessageDisplay = function (value) {
 	this.timerCompleteMessage.style.display = value
+}
+
+Pohmeedor.prototype.setReceivedTimerDisplay = function (value) {
+	this.timerReceived.style.display = value
 }
 
 Pohmeedor.prototype.toggleDetails = function (value = null) {
@@ -166,6 +182,11 @@ Pohmeedor.prototype.copyId = function () {
 	el.select();
 	document.execCommand('copy');
 	document.body.removeChild(el);
+}
+
+Pohmeedor.prototype.backToOptions = function () {
+	this.setReceivedTimerDisplay('none')
+	this.setOptionsDisplay('block')
 }
 
 Pohmeedor.prototype.runTimer = function () {
