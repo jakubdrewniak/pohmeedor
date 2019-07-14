@@ -19,6 +19,19 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+.pohmeedor__button {
+	cursor: pointer;
+	text-align: center;
+	font-weight: 700;
+}
+
+.pohmeedor__button--simple {
+	background: none;
+	border: none;
+	color: var(--text-main);
+	margin: 12px 6px;
+}
+
 .pohmeedor__input {
 	background-color: var(--background-main);
 	border: none;
@@ -42,11 +55,7 @@ body {
 	right: 10px;
 }
 
-/*-----------------------------------------------
-*   Main menu
------------------------------------------------*/
-
-.timer-options, .timer-details {
+.pohmeedor__section {
 	height: max-content;
 	margin: auto auto;
 	width: max-content;
@@ -57,12 +66,20 @@ body {
 	left: 0;
 }
 
-.timer-options__upper-segment, .timer-options__lower-segment, .timer-details-box {
+.pohmeedor__box {
 	border: 2px solid var(--text-main);
 	color: var(--text-main);
 	width: 100%;
 	padding: 25px 10px;
 }
+
+.pohmeedor__box--title {
+	text-align: center;
+}
+
+/*-----------------------------------------------
+*   Timer options
+-----------------------------------------------*/
 
 .timer-options__upper-segment {
 	border-radius: 25px 25px 0 0;
@@ -71,16 +88,6 @@ body {
 .timer-options__lower-segment {
 	border-radius: 0 0 25px 25px;
 	border-top: none;
-}
-
-.timer-options__title, .timer-details__title {
-	text-align: center;
-}
-
-.button {
-	cursor: pointer;
-	text-align: center;
-	font-weight: 700;
 }
 
 .options-buttons {
@@ -200,20 +207,16 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	position: absolute;
 }
 
-.timer-buttons__stop-button, .timer-buttons__reset-button, .timer-buttons__toggle-details-button,
-.timer-buttons__copy-button {
-	background: none;
-	border: none;
-	color: var(--text-main);
-	margin: 12px 6px;
-}
+/*-----------------------------------------------
+*   Timer details
+-----------------------------------------------*/
 
 .timer-details {
 	display: none;
 	z-index: 2;
 }
 
-.timer-details-box {
+.timer-details__box {
 	border-radius: 25px;
 	background-color: var(--background-main);
 }
@@ -225,6 +228,13 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .timer-buttons__copy-button {
 	margin: 0;
 }
+
+/*-----------------------------------------------
+*   Timer received
+-----------------------------------------------*/
+
+
+
 
 /*-----------------------------------------------
 *   Switch

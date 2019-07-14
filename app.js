@@ -6,9 +6,9 @@ function Pohmeedor() {
 }
 
 Pohmeedor.prototype.init = function () {
-	this.timerOptions = document.querySelector('.timer-options')
-	this.timerContainer = document.querySelector('.timer-container')
-	this.timerCompleteMessage = document.querySelector('.timer-complete-message')
+	this.timerOptions = document.getElementById('timerOptions')
+	this.timerContainer = document.getElementById('timerContainer')
+	this.timerCompleteMessage = document.getElementById('completeMessage')
 	this.timerDetails = document.getElementById('timerDetails')
 }
 
