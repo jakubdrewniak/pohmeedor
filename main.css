@@ -10,6 +10,19 @@
 	--pie-finished: rgba(244, 96, 54, 1);
 }
 
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
 /*-----------------------------------------------
 *   General definitions
 -----------------------------------------------*/
@@ -48,6 +61,7 @@ body {
 	margin: auto;
 	text-align: center;
 	width: 80%;
+	min-width: 0;
 }
 
 .pohmeedor__input::placeholder {
@@ -62,11 +76,19 @@ body {
 }
 
 .pohmeedor__section {
-	width: max-content;
+	width: 100%;
+	padding: 35px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+@media (min-width: 568px) {
+	.pohmeedor__section {
+		width: auto;
+		padding: 0;
+	}
 }
 
 .pohmeedor__box {
@@ -108,6 +130,16 @@ body {
 	width: 75px;
 }
 
+.options-buttons__button--screen-lg {
+	display: none;
+}
+
+@media (min-width: 568px) {
+	.options-buttons__button--screen-lg {
+		display: block;
+	}
+}
+
 .options-buttons__button--custom {
 	display: flex;
 	justify-content: center;
@@ -130,6 +162,14 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .timer-options__find-container {
 	display: flex;
+}
+
+.timer-options__find-container button {
+	flex: 0 0 75px;
+}
+
+.timer-options__find-container input {
+	flex: 1 0 75px;
 }
 
 /*-----------------------------------------------
