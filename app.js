@@ -223,7 +223,6 @@ Pohmeedor.prototype.runTimer = function () {
 	this.setTimerContainerDisplay("block")
 	this.root.style.removeProperty('--pie-color') // if pie was finished and color was changed- reset this property
 
-	// const self = this
 	const degreeForOneSecond = 360 / this.timeInSec
 	let currentFHDegree = 0
 	let currentSHDegree = 0
