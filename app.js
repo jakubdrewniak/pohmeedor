@@ -136,14 +136,13 @@ Pohmeedor.prototype.receivedTimerCountdown = function (receivedTimer) {
 
 Pohmeedor.prototype.pieResizer = function () {
 	this.paddingForPie = 10
-	let self = this
 
-	function setPieSize() {
+	const setPieSize = function () {
 		let windowHeight = window.innerHeight
 		let windowWidth = window.innerWidth
-		self.root.style.setProperty('--pie-dimension',
-			Math.min(windowHeight - 2 * self.paddingForPie, windowWidth - 2 * self.paddingForPie) / 2 + "px");
-	}
+		this.root.style.setProperty('--pie-dimension',
+			Math.min(windowHeight - 2 * this.paddingForPie, windowWidth - 2 * this.paddingForPie) / 2 + "px");
+	}.bind(this)
 
 	setPieSize()
 	window.addEventListener('resize', setPieSize);
@@ -224,7 +223,7 @@ Pohmeedor.prototype.runTimer = function () {
 	this.setTimerContainerDisplay("block")
 	this.root.style.removeProperty('--pie-color') // if pie was finished and color was changed- reset this property
 
-	const self = this
+	// const self = this
 	const degreeForOneSecond = 360 / this.timeInSec
 	let currentFHDegree = 0
 	let currentSHDegree = 0
@@ -236,8 +235,8 @@ Pohmeedor.prototype.runTimer = function () {
 
 	this.stopperForSecondHalf = setTimeout(
 		() => {
-			clearInterval(self.secondHalfIntervalToken)
-			self.setPieComplete()
+			clearInterval(this.secondHalfIntervalToken)
+			this.setPieComplete()
 		}, this.timeInSec * 1000
 	)
 
@@ -249,15 +248,15 @@ Pohmeedor.prototype.runTimer = function () {
 	this.stopperForFirstHalf = setTimeout( // stop changing first half of pie after halftime 
 		() => {
 			this.root.style.setProperty('--first-half-rotate', "180deg")
-			clearInterval(self.starterForFirstHalf)
-			timerForSecondHalf()
+			clearInterval(this.starterForFirstHalf)
+			this.timerForSecondHalf()
 		}, this.timeInSec / 2 * 1000
 	)
 
-	function timerForSecondHalf() {
-		self.secondHalfIntervalToken = setInterval(() => {
+	this.timerForSecondHalf = function() {
+		this.secondHalfIntervalToken = setInterval(() => {
 			currentSHDegree += degreeForOneSecond
-			self.root.style.setProperty('--second-half-rotate', currentSHDegree + "deg")
+			this.root.style.setProperty('--second-half-rotate', currentSHDegree + "deg")
 		}, 1000)
 	}
 
