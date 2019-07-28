@@ -185,13 +185,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	height: var(--pie-dimension);
 	display: none;
 	position: absolute;
-	margin-top: -20px;
+	margin-top: -10px;
 }
-
-/* .timer-container__pie {
-	width: calc(var(--pie-dimension)*2);
-	height: calc(var(--pie-dimension)*2);
-} */
 
 .pie {
 	position: absolute;

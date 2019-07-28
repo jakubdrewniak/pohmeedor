@@ -46,7 +46,6 @@ Pohmeedor.prototype.initializePie = function () {
 Pohmeedor.prototype.sendTimer = function () {
 	this.timerName = document.getElementById("timer-name").value || 'No name provided'
 	this.timerUUID = this.generateUUID()
-	const self = this
 	const timerToSend = {
 		timer: {
 			id: this.timerUUID,
@@ -55,18 +54,19 @@ Pohmeedor.prototype.sendTimer = function () {
 		}
 	}
 
-	function postTimer() {
-		fetch(self.BASE_URL,
+	const postTimer = function () {
+		fetch(this.BASE_URL,
 			{
 				method: "post",
 				headers: { "Content-type": "application/json; charset=UTF-8" },
 				body: JSON.stringify(timerToSend)
-			}).then(res => {
+			})
+			.then(res => {
 				if (res.status === 500) { // repeat sending post until response status is not 500; remove this workaround when database is fixed
 					postTimer()
 				}
 			})
-	}
+	}.bind(this)
 
 	postTimer()
 
@@ -80,10 +80,9 @@ Pohmeedor.prototype.setTimerDetails = function () {
 
 Pohmeedor.prototype.findTimerById = function () {
 	const timerToFindId = document.getElementById("timer-id").value
-	const self = this
 
-	function getTimer() {
-		fetch(self.BASE_URL + "/" + timerToFindId)
+	const getTimer = function () {
+		fetch(this.BASE_URL + "/" + timerToFindId)
 			.then(res => {
 				if (res.status === 500) {
 					getTimer()
@@ -93,11 +92,11 @@ Pohmeedor.prototype.findTimerById = function () {
 			})
 			.then(resp => {
 				if (resp) {
-					self.setOptionsDisplay("none")
-					self.setReceivedTimerDetails(resp.data)
+					this.setOptionsDisplay("none")
+					this.setReceivedTimerDetails(resp.data)
 				}
 			})
-	}
+	}.bind(this)
 
 	getTimer()
 
