@@ -19,6 +19,12 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+.pohmeedor__wrapper {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+}
+
 .pohmeedor__button {
 	cursor: pointer;
 	text-align: center;
@@ -56,21 +62,17 @@ body {
 }
 
 .pohmeedor__section {
-	height: max-content;
-	margin: auto auto;
 	width: max-content;
 	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .pohmeedor__box {
 	border: 2px solid var(--text-main);
 	border-radius: 25px;
 	color: var(--text-main);
-	width: 100%;
 	padding: 25px 10px;
 }
 

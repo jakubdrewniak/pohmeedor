@@ -12,99 +12,100 @@
 </head>
 
 <body>
-	<div class="color-switch">
-		<input class="color-switch__checkbox" type="checkbox" id="theme-switch">
-		<label class="color-switch__label" for="theme-switch">Toggle color mode</label>
-	</div>
+	<div class="pohmeedor__wrapper">
+		<div class="color-switch">
+			<input class="color-switch__checkbox" type="checkbox" id="theme-switch">
+			<label class="color-switch__label" for="theme-switch">Toggle color mode</label>
+		</div>
 
-	<section class="pohmeedor__section" id="timerOptions">
-		<div class="pohmeedor__box timer-options__upper-segment">
-			<h2 class="pohmeedor__box--title">Set a new timer</h2>
-			<div class="options-buttons">
-				<button onclick="pohmeedor.predefinedStart(5)" type=button
-					class="pohmeedor__button options-buttons__button">5min</button>
-				<button onclick="pohmeedor.predefinedStart(10)" type=button
-					class="pohmeedor__button options-buttons__button">10min</button>
-				<button onclick="pohmeedor.predefinedStart(15)" type=button
-					class="pohmeedor__button options-buttons__button">15min</button>
-				<button onclick="pohmeedor.predefinedStart(20)" type=button
-					class="pohmeedor__button options-buttons__button">20min</button>
-				<button onclick="pohmeedor.predefinedStart(25)" type=button
-					class="pohmeedor__button options-buttons__button">25min</button>
-				<div class="options-buttons__button options-buttons__button--custom">
-					<input id="time-min" class="pohmeedor__input" type="number" placeholder="... min" />
-					<button class="pohmeedor__button options-buttons__button--go" onclick="pohmeedor.customStart()"
-						type=button>GO!</button>
+		<section class="pohmeedor__section" id="timerOptions">
+			<div class="pohmeedor__box timer-options__upper-segment">
+				<h2 class="pohmeedor__box--title">Set a new timer</h2>
+				<div class="options-buttons">
+					<button onclick="pohmeedor.predefinedStart(5)" type=button
+						class="pohmeedor__button options-buttons__button">5min</button>
+					<button onclick="pohmeedor.predefinedStart(10)" type=button
+						class="pohmeedor__button options-buttons__button">10min</button>
+					<button onclick="pohmeedor.predefinedStart(15)" type=button
+						class="pohmeedor__button options-buttons__button">15min</button>
+					<button onclick="pohmeedor.predefinedStart(20)" type=button
+						class="pohmeedor__button options-buttons__button">20min</button>
+					<button onclick="pohmeedor.predefinedStart(25)" type=button
+						class="pohmeedor__button options-buttons__button">25min</button>
+					<div class="options-buttons__button options-buttons__button--custom">
+						<input id="time-min" class="pohmeedor__input" type="number" placeholder="... min" />
+						<button class="pohmeedor__button options-buttons__button--go" onclick="pohmeedor.customStart()"
+							type=button>GO!</button>
+					</div>
+				</div>
+				<input id="timer-name" class="pohmeedor__input" type="text" placeholder="Optional name for timer..." />
+			</div>
+			<div class="pohmeedor__box timer-options__lower-segment">
+				<h2 class="pohmeedor__box--title">Find exisiting timer</h2>
+				<div class="timer-options__find-container">
+					<input id="timer-id" class="pohmeedor__input" type="text" placeholder="Paste timer id..." />
+					<button onclick="pohmeedor.findTimerById()" type=button
+						class="pohmeedor__button options-buttons__button">Find</button>
 				</div>
 			</div>
-			<input id="timer-name" class="pohmeedor__input" type="text" placeholder="Optional name for timer..." />
-		</div>
-		<div class="pohmeedor__box timer-options__lower-segment">
-			<h2 class="pohmeedor__box--title">Find exisiting timer</h2>
-			<div class="timer-options__find-container">
-				<input id="timer-id" class="pohmeedor__input" type="text" placeholder="Paste timer id..." />
-				<button onclick="pohmeedor.findTimerById()" type=button
-					class="pohmeedor__button options-buttons__button">Find</button>
-			</div>
-		</div>
-	</section>
+		</section>
 
 
-	<section class="timer-container" id="timerContainer">
-		<h3 class="timer-complete-message" id="completeMessage">Time's up!</h3>
+		<section class="timer-container" id="timerContainer">
+			<h3 class="timer-complete-message" id="completeMessage">Time's up!</h3>
 
-		<div class="pie pie--first-half" data-start="0" id="first-half" data-before="10deg"></div>
-		<div class="pie pie--second-half" data-start="180" id="second-half"></div>
+			<div class="pie pie--first-half" data-start="0" id="first-half" data-before="10deg"></div>
+			<div class="pie pie--second-half" data-start="180" id="second-half"></div>
 
-		<div class="timer-buttons">
-			<button onclick="pohmeedor.reset()" class="pohmeedor__button pohmeedor__button--simple">Reset</button>
-			<button onclick="pohmeedor.stop()" class="pohmeedor__button pohmeedor__button--simple">Stop</button>
-			<button onclick="pohmeedor.toggleDetails()" class="pohmeedor__button pohmeedor__button--simple">Toggle
-				details</button>
-		</div>
+			<div class="timer-buttons">
+				<button onclick="pohmeedor.reset()" class="pohmeedor__button pohmeedor__button--simple">Reset</button>
+				<button onclick="pohmeedor.stop()" class="pohmeedor__button pohmeedor__button--simple">Stop</button>
+				<button onclick="pohmeedor.toggleDetails()" class="pohmeedor__button pohmeedor__button--simple">Toggle
+					details</button>
+			</div>
 
-	</section>
+		</section>
 
-	<section class="pohmeedor__section timer-details" id="timerDetails">
-		<div class="pohmeedor__box timer-details__box">
-			<h2 class="pohmeedor__box--title">Your timer details</h2>
-			<div>
-				<span>Name: </span><span id="timerName"></span>
+		<section class="pohmeedor__section timer-details" id="timerDetails">
+			<div class="pohmeedor__box timer-details__box">
+				<h2 class="pohmeedor__box--title">Your timer details</h2>
+				<div>
+					<span>Name: </span><span id="timerName"></span>
+				</div>
+				<div>
+					<span>Duration: </span><span id="timerTime"></span>
+				</div>
+				<div>
+					<span>Id: </span><span id="timerId"></span>
+					<button onclick="pohmeedor.copyId()"
+						class="pohmeedor__button pohmeedor__button--simple timer-details__copy-button">Copy</button>
+				</div>
 			</div>
-			<div>
-				<span>Duration: </span><span id="timerTime"></span>
-			</div>
-			<div>
-				<span>Id: </span><span id="timerId"></span>
-				<button onclick="pohmeedor.copyId()"
-					class="pohmeedor__button pohmeedor__button--simple timer-details__copy-button">Copy</button>
-			</div>
-		</div>
-	</section>
+		</section>
 
-	<section class="pohmeedor__section timer-received" id="timerReceived">
-		<div class="pohmeedor__box timer-received__box">
-			<h2 class="pohmeedor__box--title">Timer found</h2>
-			<div>
-				<span>Name: </span><span id="receivedTimerName"></span>
+		<section class="pohmeedor__section timer-received" id="timerReceived">
+			<div class="pohmeedor__box timer-received__box">
+				<h2 class="pohmeedor__box--title">Timer found</h2>
+				<div>
+					<span>Name: </span><span id="receivedTimerName"></span>
+				</div>
+				<div>
+					<span>Duration: </span><span id="receivedTimerDuration"></span>
+				</div>
+				<div>
+					<span>Started at: </span><span id="receivedTimerStart"></span>
+				</div>
+				<div>
+					<span>Remaining time: </span><span id="remainingTime"></span>
+				</div>
+				<div>
+					<span>Id: </span><span id="receivedTimerId"></span>
+				</div>
+				<button onclick="pohmeedor.backToOptions()"
+					class="pohmeedor__button pohmeedor__button--simple timer-received__back-button">Back</button>
 			</div>
-			<div>
-				<span>Duration: </span><span id="receivedTimerDuration"></span>
-			</div>
-			<div>
-				<span>Started at: </span><span id="receivedTimerStart"></span>
-			</div>
-			<div>
-				<span>Remaining time: </span><span id="remainingTime"></span>
-			</div>
-			<div>
-				<span>Id: </span><span id="receivedTimerId"></span>
-			</div>
-			<button onclick="pohmeedor.backToOptions()"
-				class="pohmeedor__button pohmeedor__button--simple timer-received__back-button">Back</button>
-		</div>
-	</section>
-
+		</section>
+	</div>
 	<script src="app.js"></script>
 	<script>var pohmeedor = new Pohmeedor()</script>
 </body>
