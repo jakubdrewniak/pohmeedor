@@ -11,6 +11,14 @@ Pohmeedor.prototype.init = function () {
 	this.timerCompleteMessage = document.getElementById('completeMessage')
 	this.timerDetails = document.getElementById('timerDetails')
 	this.timerReceived = document.getElementById('timerReceived')
+	this.customTimeInput = document.getElementById("time-min")
+
+	this.customTimeInput.addEventListener("keyup", function (event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			this.customStart();
+		}
+	}.bind(this))
 }
 
 Pohmeedor.prototype.predefinedStart = function (predefinedTime) {
@@ -19,7 +27,7 @@ Pohmeedor.prototype.predefinedStart = function (predefinedTime) {
 }
 
 Pohmeedor.prototype.customStart = function () {
-	this.timeInput = parseFloat(document.getElementById("time-min").value)
+	this.timeInput = parseFloat(this.customTimeInput.value)
 	if (this.timeInput > 0)
 		this.initializePie()
 	else
